@@ -13,8 +13,8 @@
             }
             tbody>tr>td{
                 border: 0.5px;
-                border-style: dashed;
-                border-color: #aa3535;
+                border-style: dotted;
+                border-color: #691313;
             }
             #desempilhar{
                 width: 100%;
@@ -42,5 +42,17 @@
             </tr>
         </tfoot>
     </table>
+
+    <script>
+            var pilha=[]
+            
+            var campoEntrada = document.getElementById("entrada")
+            var btnEmpilhar = document.getElementById("empilhar")
+            var btnDesempilhar = document.getElementById("desempilhar")
+            var tabela = document.getElementsByTagName("tbody")[0]
+    
+            btnEmpilhar.addEventListener("click",empilhar)
+            btnDesempilhar.addEventListener("click",desempilhar)
+        </script>
 </body>
 </html>
