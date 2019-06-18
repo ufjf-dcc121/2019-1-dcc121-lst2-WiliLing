@@ -136,6 +136,20 @@
             }
             
         }
+        function excluir(){
+            var listaDeLi = idUl.getElementsByTagName("li");
+            for (var i = 0; i < listaDeLi.length; i++) {
+                if(listaDeLi[i].style.color == "red") idUl.removeChild(listaDeLi[i]);
+            }
+            btnExcluir.style.display = "none";
+            atualizando = 0;
+            document.forms.cadastro.idade.min="0";
+            document.forms.cadastro.idade.max="";
+            btnInscrever.value = "Inscrever";
+            formulario.reset();
+            formulario.nome.focus();
+        }
+
     </script>
 </body>
 
