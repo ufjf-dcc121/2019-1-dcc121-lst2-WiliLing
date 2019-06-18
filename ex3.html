@@ -27,6 +27,32 @@
     </style>
 </head>
 <body>
+    <h1>Participantes:</h1>
+    <form name="cadastro">
+        <table>
+            <tr>
+                <td>Nome: </td>
+                <td><input class="dados" type="text" name="nome" placeholder="Digite o nome aqui" required></td>
+            </tr>
+            <tr>
+                <td>Idade: </td>
+                <td><input class="dados" type="number" name="idade" placeholder="0" min="0" required></td>
+            </tr>
+            <tr>
+                <td class="botoes"  colspan="2">
+                    <input type="button" value="Excluir" name="excluir" >
+                    <input type="submit" value="Inscrever" name="inscrever" >
+                </td>
+            </tr>
+        </table>    
+    </form>
     
+    <div>
+        <p>Adultos</p>
+        <ul id="adultos"></ul>
+        <p>Estudantes</p>
+        <ul id="estudantes"></ul>
+    </div>  
+
 </body>
 </html>
