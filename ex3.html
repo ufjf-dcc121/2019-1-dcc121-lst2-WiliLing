@@ -54,5 +54,16 @@
         <ul id="estudantes"></ul>
     </div>  
 
+    <script>
+        var formulario = document.forms.cadastro;
+        var listaAdultos = document.getElementById("adultos");
+        var listaEstudantes = document.getElementById("estudantes");
+        var bExcluir = document.forms.cadastro.excluir;
+        var bInscrever = document.forms.cadastro.inscrever;
+
+        bExcluir.style.display = "none";
+        bExcluir.addEventListener("click",excluir);
+        formulario.addEventListener("submit",addAtualizarParticipante);
+    </script>
 </body>
 </html>
