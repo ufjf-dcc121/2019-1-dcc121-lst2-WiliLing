@@ -64,6 +64,32 @@
         bExcluir.style.display = "none";
         bExcluir.addEventListener("click",excluir);
         formulario.addEventListener("submit",addAtualizarParticipante);
+
+        var atualizando = 0;
+        var idUl;
+        function addAtualizarParticipante(e){
+            e.preventDefault();
+            if(!atualizando){ 
+                var vNome = document.forms.cadastro.nome.value;
+                var vIdade = document.forms.cadastro.idade.value;
+
+                if(vIdade>17){
+                    var novoLi = document.createElement("li");
+                    novoLi.innerHTML = "<span class='sNome'>"+vNome+"</span> - <span class='sIdade'>"+vIdade+"</span>";
+                    novoLi.addEventListener("click",editar);
+                    listaAdultos.appendChild(novoLi); 
+                } 
+                else {
+                    var novoLi = document.createElement("li");
+                    novoLi.innerHTML = "<span class='sNome'>"+vNome+"</span> - <span class='sIdade'>"+vIdade+"</span>";
+                    novoLi.addEventListener("click",editar);
+                    listaEstudantes.appendChild(novoLi); 
+                    
+                }
+                formulario.reset();
+                formulario.nome.focus();
+            }
+        }
     </script>
 </body>
 </html>
