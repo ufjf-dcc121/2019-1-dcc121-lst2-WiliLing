@@ -35,6 +35,10 @@
     </table>
 
     <button id="limpar">Limpar</button>
+    <script>
+        document.forms.compras.addEventListener("submit",processaEnvio)
+        var tabela = document.getElementsByTagName("tbody")[0]
+        var limpar = document.getElementById("limpar");
     </script>
 </body>
 </html>
