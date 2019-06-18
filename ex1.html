@@ -39,6 +39,26 @@
         document.forms.compras.addEventListener("submit",processaEnvio)
         var tabela = document.getElementsByTagName("tbody")[0]
         var limpar = document.getElementById("limpar");
+        function processaEnvio(e){
+            e.preventDefault();
+            var nome = document.forms.compras.nome.value
+            var quantidade = Number(document.forms.compras.quant.value)
+            if(nome!="" && quantidade!=""){
+                var novoTr = document.createElement("tr")
+                var novoTdNome = document.createElement("td")
+                var novoTdQuantidade = document.createElement("td")
+
+                novoTdNome.textContent = nome
+                novoTdQuantidade.textContent = quantidade
+        
+                novoTr.appendChild(novoTdNome)
+                novoTr.appendChild(novoTdQuantidade)
+                tabela.appendChild(novoTr)
+                document.forms.compras.reset();
+                document.forms.compras.nome.focus();
+            }
+        }
+
     </script>
 </body>
 </html>
