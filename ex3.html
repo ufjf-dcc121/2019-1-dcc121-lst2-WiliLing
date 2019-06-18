@@ -1,31 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Lista 2.1 ex 3</title>
     <style>
-        input.dados{
+        input.dados {
             width: 100%;
         }
-        .botoes{
-            text-align:right;
-        }    
-        table{
+
+        .botoes {
+            text-align: right;
+        }
+
+        table {
             padding: 0.5em;
             border: 0.1em solid;
             margin: 0.5em;
         }
-        div{
+
+        div {
             margin-left: 0.5em;
             width: 243px;
             border: 0.1em dotted;
         }
-        p{
+
+        p {
             padding-left: 0.5em;
             font-weight: bold;
         }
     </style>
 </head>
+
 <body>
     <h1>Participantes:</h1>
     <form name="cadastro">
@@ -39,20 +45,20 @@
                 <td><input class="dados" type="number" name="idade" placeholder="0" min="0" required></td>
             </tr>
             <tr>
-                <td class="botoes"  colspan="2">
-                    <input type="button" value="Excluir" name="excluir" >
-                    <input type="submit" value="Inscrever" name="inscrever" >
+                <td class="botoes" colspan="2">
+                    <input type="button" value="Excluir" name="excluir">
+                    <input type="submit" value="Inscrever" name="inscrever">
                 </td>
             </tr>
-        </table>    
+        </table>
     </form>
-    
+
     <div>
         <p>Adultos</p>
         <ul id="adultos"></ul>
         <p>Estudantes</p>
         <ul id="estudantes"></ul>
-    </div>  
+    </div>
 
     <script>
         var formulario = document.forms.cadastro;
@@ -62,34 +68,57 @@
         var bInscrever = document.forms.cadastro.inscrever;
 
         bExcluir.style.display = "none";
-        bExcluir.addEventListener("click",excluir);
-        formulario.addEventListener("submit",addAtualizarParticipante);
+        bExcluir.addEventListener("click", excluir);
+        formulario.addEventListener("submit", addAtualizarParticipante);
 
         var atualizando = 0;
         var idUl;
-        function addAtualizarParticipante(e){
+        function addAtualizarParticipante(e) {
             e.preventDefault();
-            if(!atualizando){ 
+            if (!atualizando) {
                 var vNome = document.forms.cadastro.nome.value;
                 var vIdade = document.forms.cadastro.idade.value;
 
-                if(vIdade>17){
+                if (vIdade > 17) {
                     var novoLi = document.createElement("li");
-                    novoLi.innerHTML = "<span class='sNome'>"+vNome+"</span> - <span class='sIdade'>"+vIdade+"</span>";
-                    novoLi.addEventListener("click",editar);
-                    listaAdultos.appendChild(novoLi); 
-                } 
+                    novoLi.innerHTML = "<span class='sNome'>" + vNome + "</span> - <span class='sIdade'>" + vIdade + "</span>";
+                    novoLi.addEventListener("click", editar);
+                    listaAdultos.appendChild(novoLi);
+                }
                 else {
                     var novoLi = document.createElement("li");
-                    novoLi.innerHTML = "<span class='sNome'>"+vNome+"</span> - <span class='sIdade'>"+vIdade+"</span>";
-                    novoLi.addEventListener("click",editar);
-                    listaEstudantes.appendChild(novoLi); 
-                    
+                    novoLi.innerHTML = "<span class='sNome'>" + vNome + "</span> - <span class='sIdade'>" + vIdade + "</span>";
+                    novoLi.addEventListener("click", editar);
+                    listaEstudantes.appendChild(novoLi);
+
                 }
                 formulario.reset();
                 formulario.nome.focus();
             }
+            else {
+                var listaDeLi = idUl.getElementsByTagName("li");
+                for (var i = 0; i < listaDeLi.length; i++) {
+                    if (listaDeLi[i].style.color == "red") { 
+                        var vNome = document.forms.cadastro.nome.value;
+                        var vIdade = document.forms.cadastro.idade.value;
+                        listaDeLi[i].innerHTML = "<span class='sNome'>" + vNome + "</span> - <span class='sIdade'>" + vIdade + "</span>";
+
+                        //resetando
+                        document.forms.cadastro.idade.min = "0";
+                        document.forms.cadastro.idade.max = "";
+                        atualizando = 0;
+                        listaDeLi[i].style.color = "black";
+                        btnExcluir.style.display = "none";
+                        btnInscrever.value = "Inscrever";
+                        break;
+                    }
+                }
+                formulario.reset();
+                formulario.nome.focus();
+            }
+
         }
     </script>
 </body>
+
 </html>
