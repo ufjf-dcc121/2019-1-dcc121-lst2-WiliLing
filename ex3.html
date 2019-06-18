@@ -118,6 +118,24 @@
             }
 
         }
+        function editar(){
+            if(!atualizando){ 
+                document.forms.cadastro.nome.value=this.getElementsByClassName("sNome")[0].innerText;
+                document.forms.cadastro.idade.value=Number(this.getElementsByClassName("sIdade")[0].innerText);
+
+                this.style.color="red";
+                btnExcluir.style.display = "inline";
+                idUl = this.parentElement
+                
+                if(idUl.id=="adultos") document.forms.cadastro.idade.min=18;
+                else document.forms.cadastro.idade.max=17;
+
+                btnInscrever.value = "Atualizar";
+
+                atualizando = 1;
+            }
+            
+        }
     </script>
 </body>
 
