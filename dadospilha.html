@@ -1,34 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Lista 2 Ex 2 Pilha</title>
 
     <style>
-            table{
-                margin: 0.5em;
-                text-align: center;
-                border-collapse: collapse;
-    
-            }
-            tbody>tr>td{
-                border: 0.5px;
-                border-style: dotted;
-                border-color: #691313;
-            }
-            #desempilhar{
-                width: 100%;
-            }
-    
-        </style>
+        table {
+            margin: 0.5em;
+            text-align: center;
+            border-collapse: collapse;
+
+        }
+
+        tbody>tr>td {
+            border: 0.5px;
+            border-style: dotted;
+            border-color: #691313;
+        }
+
+        #desempilhar {
+            width: 100%;
+        }
+    </style>
 
 </head>
+
 <body>
     <h1>Pilha</h1>
     Entrada: <input type="number" id="entrada">
-    
+
     <button id="empilhar">Empilhar</button>
-    
+
     <table>
         <thead>
             <tr>
@@ -44,15 +47,43 @@
     </table>
 
     <script>
-            var pilha=[]
-            
-            var campoEntrada = document.getElementById("entrada")
-            var btnEmpilhar = document.getElementById("empilhar")
-            var btnDesempilhar = document.getElementById("desempilhar")
-            var tabela = document.getElementsByTagName("tbody")[0]
-    
-            btnEmpilhar.addEventListener("click",empilhar)
-            btnDesempilhar.addEventListener("click",desempilhar)
-        </script>
+        var pilha = []
+
+        var campoEntrada = document.getElementById("entrada")
+        var bEmpilha = document.getElementById("empilhar")
+        var bDesempilha = document.getElementById("desempilhar")
+        var tabela = document.getElementsByTagName("tbody")[0]
+
+        bEmpilha.addEventListener("click", empilhar)
+        bDesempilha.addEventListener("click", desempilhar)
+
+        function empilhar() {
+            if (campoEntrada.value != "") {
+                pilha.push(campoEntrada.value)
+                atualizarPilha()
+            }
+        }
+
+
+        function desempilhar() {
+            pilha.splice(pilha.length - 1, 1)
+            atualizarPilha()
+        }
+
+        function atualizarPilha() {
+            tabela.innerHTML = ""
+            for (var i = pilha.length - 1; i >= 0; i--) {
+                var novoTr = document.createElement("tr")
+                var novoTd = document.createElement("td")
+
+                novoTd.innerText = pilha[i]
+
+                novoTr.appendChild(novoTd)
+                tabela.appendChild(novoTr)
+
+            }
+        }
+    </script>
 </body>
+
 </html>
