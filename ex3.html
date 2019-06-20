@@ -61,60 +61,60 @@
     </div>
 
     <script>
-        var formulario = document.forms.cadastro;
-        var listaAdultos = document.getElementById("adultos");
-        var listaEstudantes = document.getElementById("estudantes");
-        var bExcluir = document.forms.cadastro.excluir;
+        var lE = document.getElementById("estudantes");
+        var lA = document.getElementById("adultos");
+        var forml = document.forms.cadastro;
         var bInscrever = document.forms.cadastro.inscrever;
+        var bExcluir = document.forms.cadastro.excluir;
 
         bExcluir.style.display = "none";
+        forml.addEventListener("submit", addAtualizarParticipante);
         bExcluir.addEventListener("click", excluir);
-        formulario.addEventListener("submit", addAtualizarParticipante);
 
-        var atualizando = 0;
         var idUl;
+        var atualizando = 0;
         function addAtualizarParticipante(e) {
             e.preventDefault();
             if (!atualizando) {
-                var vNome = document.forms.cadastro.nome.value;
-                var vIdade = document.forms.cadastro.idade.value;
+                var rN = document.forms.cadastro.nome.value;
+                var rI = document.forms.cadastro.idade.value;
 
-                if (vIdade > 17) {
-                    var novoLi = document.createElement("li");
-                    novoLi.innerHTML = "<span class='sNome'>" + vNome + "</span> - <span class='sIdade'>" + vIdade + "</span>";
-                    novoLi.addEventListener("click", editar);
-                    listaAdultos.appendChild(novoLi);
+                if (rI > 17) {
+                    var newLI = document.createElement("li");
+                    newLI.innerHTML = "<span class='sNome'>" + rN + "</span> - <span class='sIdade'>" + rI + "</span>";
+                    newLI.addEventListener("click", editar);
+                    lA.appendChild(newLI);
                 }
                 else {
-                    var novoLi = document.createElement("li");
-                    novoLi.innerHTML = "<span class='sNome'>" + vNome + "</span> - <span class='sIdade'>" + vIdade + "</span>";
-                    novoLi.addEventListener("click", editar);
-                    listaEstudantes.appendChild(novoLi);
+                    var newLI = document.createElement("li");
+                    newLI.innerHTML = "<span class='sNome'>" + rN + "</span> - <span class='sIdade'>" + rI + "</span>";
+                    newLI.addEventListener("click", editar);
+                    lE.appendChild(newLI);
 
                 }
-                formulario.reset();
-                formulario.nome.focus();
+                forml.reset();
+                forml.nome.focus();
             }
             else {
-                var listaDeLi = idUl.getElementsByTagName("li");
-                for (var i = 0; i < listaDeLi.length; i++) {
-                    if (listaDeLi[i].style.color == "red") { 
-                        var vNome = document.forms.cadastro.nome.value;
-                        var vIdade = document.forms.cadastro.idade.value;
-                        listaDeLi[i].innerHTML = "<span class='sNome'>" + vNome + "</span> - <span class='sIdade'>" + vIdade + "</span>";
+                var listLi = idUl.getElementsByTagName("li");
+                for (var i = 0; i < listLi.length; i++) {
+                    if (listLi[i].style.color == "red") { 
+                        var rN = document.forms.cadastro.nome.value;
+                        var rI = document.forms.cadastro.idade.value;
+                        listLi[i].innerHTML = "<span class='sNome'>" + rN + "</span> - <span class='sIdade'>" + rI + "</span>";
 
                         //resetando
                         document.forms.cadastro.idade.min = "0";
                         document.forms.cadastro.idade.max = "";
                         atualizando = 0;
-                        listaDeLi[i].style.color = "black";
+                        listLi[i].style.color = "black";
                         btnExcluir.style.display = "none";
                         btnInscrever.value = "Inscrever";
                         break;
                     }
                 }
-                formulario.reset();
-                formulario.nome.focus();
+                forml.reset();
+                forml.nome.focus();
             }
 
         }
@@ -137,17 +137,17 @@
             
         }
         function excluir(){
-            var listaDeLi = idUl.getElementsByTagName("li");
-            for (var i = 0; i < listaDeLi.length; i++) {
-                if(listaDeLi[i].style.color == "red") idUl.removeChild(listaDeLi[i]);
+            var listLi = idUl.getElementsByTagName("li");
+            for (var i = 0; i < listLi.length; i++) {
+                if(listLi[i].style.color == "red") idUl.removeChild(listLi[i]);
             }
             btnExcluir.style.display = "none";
             atualizando = 0;
             document.forms.cadastro.idade.min="0";
             document.forms.cadastro.idade.max="";
             btnInscrever.value = "Inscrever";
-            formulario.reset();
-            formulario.nome.focus();
+            forml.reset();
+            forml.nome.focus();
         }
 
     </script>
