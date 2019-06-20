@@ -49,7 +49,7 @@
     <script>
         var pilha = []
 
-        var campoEntrada = document.getElementById("entrada")
+        var cE = document.getElementById("entrada")
         var bEmpilha = document.getElementById("empilhar")
         var bDesempilha = document.getElementById("desempilhar")
         var tabela = document.getElementsByTagName("tbody")[0]
@@ -58,8 +58,8 @@
         bDesempilha.addEventListener("click", desempilhar)
 
         function empilhar() {
-            if (campoEntrada.value != "") {
-                pilha.push(campoEntrada.value)
+            if (cE.value != "") {
+                pilha.push(cE.value)
                 atualizarPilha()
             }
         }
@@ -73,13 +73,13 @@
         function atualizarPilha() {
             tabela.innerHTML = ""
             for (var i = pilha.length - 1; i >= 0; i--) {
-                var novoTr = document.createElement("tr")
-                var novoTd = document.createElement("td")
+                var newTr = document.createElement("tr")
+                var newTd = document.createElement("td")
 
-                novoTd.innerText = pilha[i]
+                newTd.innerText = pilha[i]
 
-                novoTr.appendChild(novoTd)
-                tabela.appendChild(novoTr)
+                newTr.appendChild(newTd)
+                tabela.appendChild(newTr)
             }
         }
     </script>
