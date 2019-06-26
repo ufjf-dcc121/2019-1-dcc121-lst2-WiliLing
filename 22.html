@@ -81,16 +81,16 @@
                 </tfoot>
             </table>
             <ol type="I">
-                    <li>Mais pesado: <span id="pesado"></span></li>
-                    <li>Mais alto: <span id="alto"></span></li>
-                    <li>Mais longe: <span id="longevo"></span></li>   
-                    <li>Mais veloz: <span id="veloz"></span></li>
+                    <li>Mais p: <span id="p"></span></li>
+                    <li>Mais a: <span id="a"></span></li>
+                    <li>Mais longe: <span id="l"></span></li>   
+                    <li>Mais v: <span id="v"></span></li>
                 </ol>
                 <p>Animas acima do peso: <span id="acima"></span></p>
 </body>
 <script>
     document.forms.formulario.addEventListener("submit",novAnimal);
-    vetorDeDados = [];
+    vetDados = [];
     var refAltura = 0;
     var refPeso = 0;
     var refVelocidade = 0;
@@ -109,10 +109,52 @@
         var idMax = refDados.idMax.value;
         var refPeso = document.getElementById("mPeso");
         var refVelocidade = document.getElementById("mVelocidade");
-        refVeloz = document.getElementById("veloz");
-        refAlto = document.getElementById("alto");
-        refPesado = document.getElementById("pesado");
-        refLongevo = document.getElementById("longevo");
+        refv = document.getElementById("v");
+        refAlto = document.getElementById("a");
+        refp = document.getElementById("p");
+        refl = document.getElementById("l");
+        novoTr = document.createElement("tr");
+        newNom = document.createElement("td");
+        newAlt = document.createElement("td");
+        newPes = document.createElement("td");
+        newVeloc = document.createElement("td");
+        newIdade = document.createElement("td");
+
+        newNom.innerText = nome;
+        newAlt.innerText = altura;
+        newPes.innerText = peso;
+        newVeloc.innerText = velocidade; 
+        newIdade.innerText = idadeMax;
+        novoTr.appendChild(newNom);
+        novoTr.appendChild(newAlt);
+        novoTr.appendChild(newPes);
+        novoTr.appendChild(newVeloc);
+        novoTr.appendChild(newIdade);
+        tbody.appendChild(novoTr);
+
+        vetDados.push({nome:nome,altura:altura,peso:peso,velocidade:velocidade,idadeMax:idadeMax});
+        var a=0,p=0,v=0,l=0;
+        for (var i = 0; i < vetDados.length; i++) {
+            refAltura += Number(vetDados[i].altura);
+            refPeso += Number(vetDados[i].peso);
+            refVelocidade += Number(vetDados[i].velocidade);
+            refIdmax += Number(vetDados[i].idadeMax);
+
+            if(vetDados[i].altura>vetDados[a].altura) a=i;
+            if(vetDados[i].peso>vetDados[p].peso) p=i;
+            if(vetDados[i].velocidade>vetDados[v].velocidade) v=i;
+            if(vetDados[i].idadeMax>vetDados[l].idadeMax) l=i;
+        }
+
+        refAltura.innerText = mAltura/vetorDeDados.length;
+        refp.innerText = mPeso/vetorDeDados.length;
+        refVelocidade.innerText = mVelocidade/vetorDeDados.length;
+        refIdmax.innerText = mIdademMax/vetorDeDados.length;
+
+        refAlto.innerText = vetorDeDados[a].nome;
+        refPeso.innerText = vetorDeDados[p].nome;
+        refVelocidade.innerText = vetorDeDados[v].nome;
+        refl.innerText = vetorDeDados[l].nome;
     }
 </script>
 </html>
