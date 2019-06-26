@@ -69,7 +69,7 @@
                         <th>Idade maxima</th>
                     </tr>
                 </thead>
-                <tbody></tbody>
+                <refCorpo></refCorpo>
                 <tfoot>
                     <tr>
                         <td>Média:</td>
@@ -89,13 +89,30 @@
                 <p>Animas acima do peso: <span id="acima"></span></p>
 </body>
 <script>
-    document.forms.formulario.addEventListener("submit",addAnimal);
+    document.forms.formulario.addEventListener("submit",novAnimal);
     vetorDeDados = [];
     var refAltura = 0;
     var refPeso = 0;
     var refVelocidade = 0;
     var refIdadeMax = 0;
     var tDAn = 0;
-   
+    function novAnimal(e){
+        e.preventDefault();
+        var refDados = document.forms.formulario;
+        var velocidade = refDados.velocidade.value;
+        var nome = refDados.nome.value;
+        var refIdmax = document.getElementById("mIdademMax");
+        var peso = refDados.peso.value;
+        var refAltura = document.getElementById("mAltura");
+        var altura = refDados.altura.value;
+        var refCorpo = document.getElementsByTagName("refCorpo")[0];
+        var idMax = refDados.idMax.value;
+        var refPeso = document.getElementById("mPeso");
+        var refVelocidade = document.getElementById("mVelocidade");
+        refVeloz = document.getElementById("veloz");
+        refAlto = document.getElementById("alto");
+        refPesado = document.getElementById("pesado");
+        refLongevo = document.getElementById("longevo");
+    }
 </script>
 </html>
