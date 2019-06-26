@@ -4,7 +4,21 @@
     <meta charset="UTF-8">
     <title>Exercicio da Lista 2.2</title>
     <style>
-    
+
+        form{
+            margin:1px 1px 1px 1px;
+        }
+        label>span{
+            float:left;
+            width: 100px;
+        }
+        .animais{
+            margin: 1px;
+            width: 300px;
+        }
+        .animais th,td{
+            border:dotted 1px rgb(255,0,0);
+        }
     </style>
 </head>
 <body>
@@ -65,5 +79,11 @@
                     </tr>
                 </tfoot>
             </table>
+            <ol type="I">
+                    <li>Mais pesado: <span id="pesado"></span></li>
+                    <li>Mais alto: <span id="alto"></span></li>
+                    <li>Mais longe: <span id="longevo"></span></li>   
+                    <li>Mais veloz: <span id="veloz"></span></li>
+                </ol>
 </body>
 </html>
