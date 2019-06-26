@@ -94,7 +94,7 @@
                 <th>Idade</th>
             </tr>
         </thead>
-        <tbo></tbo>
+        <tbody></tbody>
         <tfoot>
             <tr>
                 <td>Média:</td>
@@ -138,7 +138,7 @@
 
         //Referencias da tabela
         var tdP = document.getElementById("pesoM");
-        var tbo = document.getElementsByTagName("tbo")[0];
+        var tb = document.getElementsByTagName("tbody")[0];
         var tdA = document.getElementById("alturam");
         var tdI = document.getElementById("IdadeM");
         var tdV = document.getElementById("VelM");
@@ -149,22 +149,21 @@
         newTdP = document.createElement("td");
 
         newTr = document.createElement("tr");
+        newTdNo = document.createElement("td");
         newTdAl = document.createElement("td");
         newTdV = document.createElement("td");
         novoTdIdademMax = document.createElement("td");
-
-        newTdNo = document.createElement("td");
         newTdNo.innerText = nome;
         novoTdIdademMax.innerText = idade;
         newTdAl.innerText = altura;
         newTdV.innerText = velocidade;
         newTdP.innerText = peso;
-        newTr.appendChild(newTdAl);
         newTr.appendChild(newTdNo);
+        newTr.appendChild(newTdAl);
         newTr.appendChild(newTdP);
         newTr.appendChild(newTdV);
         newTr.appendChild(novoTdIdademMax);
-        tbo.appendChild(newTr);
+        tb.appendChild(newTr);
 
         vet.push({ nome: nome, altura: altura, peso: peso, velocidade: velocidade, idade: idade });
         var alto = 0, pesado = 0, veloz = 0, longe = 0;
