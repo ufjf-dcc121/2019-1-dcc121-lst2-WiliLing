@@ -1,160 +1,208 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
-    <title>Exercicio da Lista 2.2</title>
+    <title>Coleção de animas</title>
+
     <style>
-
-        form{
-            margin:1px 1px 1px 1px;
+        .animal {
+            margin-left: 1px rgb(255,0,0);
+            width: 200px;
         }
-        label>span{
-            float:left;
+
+        .animal td,
+        th {
+            border: 2px dotted rgb(255,0,0);
+            text-align: center;
+        }
+
+        thead,
+        tfoot {
+            font-weight: dashed;
+        }
+
+        form {
+            margin-left: 0.5em;
+            margin-bottom: 0.5em;
+        }
+
+        label>span {
             width: 100px;
-        }
-        .animais{
-            margin: 1px;
-            width: 300px;
-        }
-        .animais th,td{
-            border:dotted 1px rgb(255,0,0);
+            float: left;
         }
 
+        div {
+            padding: 1px;
+        }
+
+        #botao {
+            text-align:left;
+            widows: 200px;
+        }
     </style>
+
 </head>
+
 <body>
-        <h1>Animais - Características e Curiosidades</h1>
-        <form name="formulario">
-            <div>
-                <label>
-                    <span>Animal:</span>
-                    <input type="text" name="nome" required>
-                </label>
-            </div>
-            <div>
-                <label>
-                    <span>Altura:</span>
-                    <input type="number" step="any" min="0" name="altura" required>
-                </label>
-            </div>
-            <div>
-                <label>
-                    <span>Peso: </span>
-                    <input type="number" step="any" min="0" name="peso" required>
-                </label>
-            </div>
-            <div>
-                <label>
-                    <span>Velocidade:</span>
-                    <input type="number" step="any" min="0" name="velocidade" required>
-                </label>
-            </div>
-            <div>
-                <label>
-                    <span> Idade maxima:</span>
-                    <input type="number" step="any" min="0" name="idadeMax" required>
-                </label>
-            </div>
-            <div id="botao">
-                <input class="botao" type="submit" value="Inserir" required>
-            </div>
-        </form>
-        <table class="animais"> 
-                <thead>
-                    <tr>
-                        <th>Animal</th>
-                        <th>Altura</th>
-                        <th>Peso</th>
-                        <th>Velocidade</th>
-                        <th>Idade maxima</th>
-                    </tr>
-                </thead>
-                <refCorpo></refCorpo>
-                <tfoot>
-                    <tr>
-                        <td>Média:</td>
-                        <td id="refAltura"></td>
-                        <td id="refPeso"></td>
-                        <td id="refVelocidade"></td>
-                        <td id="refIdadeMax"></td>
-                    </tr>
-                </tfoot>
-            </table>
-            <ol type="I">
-                    <li>Mais p: <span id="p"></span></li>
-                    <li>Mais a: <span id="a"></span></li>
-                    <li>Mais longe: <span id="l"></span></li>   
-                    <li>Mais v: <span id="v"></span></li>
-                </ol>
-                <p>Animas acima do peso: <span id="acima"></span></p>
+    <h1>Dados dos Animais</h1>
+    <form name="form">
+        <div>
+            <label>
+                <span>Animal:</span>
+                <input type="text" name="nome" required>
+            </label>
+        </div>
+        <div>
+            <label>
+                <span>Altura:</span>
+                <input type="number" step="any" min="0" name="altura" required>
+            </label>
+        </div>
+        <div>
+            <label>
+                <span>Peso:</span>
+                <input type="number" step="any" min="0" name="peso" required>
+            </label>
+        </div>
+        <div>
+            <label>
+                <span>Velocidade:</span>
+                <input type="number" step="any" min="0" name="velocidade" required>
+            </label>
+        </div>
+        <div>
+            <label>
+                <span> Idade Maxima:</span>
+                <input type="number" step="any" min="0" name="idade" required>
+            </label>
+        </div>
+        <div id="botao">
+            <input class="botao" type="submit" value="Inserir" required>
+        </div>
+
+
+    </form>
+
+    <table class="animal">
+        <thead>
+            <tr>
+                <th>Animal</th>
+                <th>Altura</th>
+                <th>Peso</th>
+                <th>Velocidade</th>
+                <th>Idade</th>
+            </tr>
+        </thead>
+        <tbo></tbo>
+        <tfoot>
+            <tr>
+                <td>Média:</td>
+                <td id="alturam"></td>
+                <td id="pesoM"></td>
+                <td id="VelM"></td>
+                <td id="IdadeM"></td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <ol type="I">
+        <li>Alto: <span id="alto"></span></li>
+        <li>Pesado: <span id="pesado"></span></li>
+        <li>Veloz: <span id="veloz"></span></li>
+        <li>Longe: <span id="longe"></span></li>
+    </ol>
+
+    <p>Acima da media:  <span id="acima"></span></p>
 </body>
+
+
 <script>
-    document.forms.formulario.addEventListener("submit",novAnimal);
-    vetDados = [];
-    var refAltura = 0;
-    var refPeso = 0;
-    var refVelocidade = 0;
-    var refIdadeMax = 0;
-    var tDAn = 0;
-    function novAnimal(e){
+    document.forms.form.addEventListener("submit", adicionar);
+    vet = [];
+    var alturam = 0;
+    var pesoM = 0;
+    var VelM = 0;
+    var IdadeM = 0;
+    var totalDeAnimais = 0;
+
+    function adicionar(e) {
         e.preventDefault();
-        var refDados = document.forms.formulario;
-        var velocidade = refDados.velocidade.value;
-        var nome = refDados.nome.value;
-        var refIdmax = document.getElementById("mIdademMax");
-        var peso = refDados.peso.value;
-        var refAltura = document.getElementById("mAltura");
-        var altura = refDados.altura.value;
-        var refCorpo = document.getElementsByTagName("refCorpo")[0];
-        var idMax = refDados.idMax.value;
-        var refPeso = document.getElementById("mPeso");
-        var refVelocidade = document.getElementById("mVelocidade");
-        refv = document.getElementById("v");
-        refAlto = document.getElementById("a");
-        refp = document.getElementById("p");
-        refl = document.getElementById("l");
-        novoTr = document.createElement("tr");
-        newNom = document.createElement("td");
-        newAlt = document.createElement("td");
-        newPes = document.createElement("td");
-        newVeloc = document.createElement("td");
-        newIdade = document.createElement("td");
+        //Referências do form
+        var formulario = document.forms.form;
+        var nome = formulario.nome.value;
+        var altura = formulario.altura.value;
+        var peso = formulario.peso.value;
+        var velocidade = formulario.velocidade.value;
+        var idade = formulario.idade.value;
 
-        newNom.innerText = nome;
-        newAlt.innerText = altura;
-        newPes.innerText = peso;
-        newVeloc.innerText = velocidade; 
-        newIdade.innerText = idadeMax;
-        novoTr.appendChild(newNom);
-        novoTr.appendChild(newAlt);
-        novoTr.appendChild(newPes);
-        novoTr.appendChild(newVeloc);
-        novoTr.appendChild(newIdade);
-        tbody.appendChild(novoTr);
+        //Referencias da tabela
+        var tdP = document.getElementById("pesoM");
+        var tbo = document.getElementsByTagName("tbo")[0];
+        var tdA = document.getElementById("alturam");
+        var tdI = document.getElementById("IdadeM");
+        var tdV = document.getElementById("VelM");
+        rPesado = document.getElementById("pesado");
+        rAlto = document.getElementById("alto");
+        rLong = document.getElementById("longe");
+        rVeloz = document.getElementById("veloz");
+        newTdP = document.createElement("td");
 
-        vetDados.push({nome:nome,altura:altura,peso:peso,velocidade:velocidade,idadeMax:idadeMax});
-        var a=0,p=0,v=0,l=0;
-        for (var i = 0; i < vetDados.length; i++) {
-            refAltura += Number(vetDados[i].altura);
-            refPeso += Number(vetDados[i].peso);
-            refVelocidade += Number(vetDados[i].velocidade);
-            refIdmax += Number(vetDados[i].idadeMax);
+        newTr = document.createElement("tr");
+        newTdAl = document.createElement("td");
+        newTdV = document.createElement("td");
+        novoTdIdademMax = document.createElement("td");
 
-            if(vetDados[i].altura>vetDados[a].altura) a=i;
-            if(vetDados[i].peso>vetDados[p].peso) p=i;
-            if(vetDados[i].velocidade>vetDados[v].velocidade) v=i;
-            if(vetDados[i].idadeMax>vetDados[l].idadeMax) l=i;
+        newTdNo = document.createElement("td");
+        newTdNo.innerText = nome;
+        novoTdIdademMax.innerText = idade;
+        newTdAl.innerText = altura;
+        newTdV.innerText = velocidade;
+        newTdP.innerText = peso;
+        newTr.appendChild(newTdAl);
+        newTr.appendChild(newTdNo);
+        newTr.appendChild(newTdP);
+        newTr.appendChild(newTdV);
+        newTr.appendChild(novoTdIdademMax);
+        tbo.appendChild(newTr);
+
+        vet.push({ nome: nome, altura: altura, peso: peso, velocidade: velocidade, idade: idade });
+        var alto = 0, pesado = 0, veloz = 0, longe = 0;
+        for (var i = 0; i < vet.length; i++) {
+            alturam += Number(vet[i].altura);
+            pesoM += Number(vet[i].peso);
+            VelM += Number(vet[i].velocidade);
+            IdadeM += Number(vet[i].idade);
+
+            if (vet[i].altura > vet[alto].altura) alto = i;
+            if (vet[i].peso > vet[pesado].peso) pesado = i;
+            if (vet[i].velocidade > vet[veloz].velocidade) veloz = i;
+            if (vet[i].idade > vet[longe].idade) longe = i;
         }
 
-        refAltura.innerText = mAltura/vetorDeDados.length;
-        refp.innerText = mPeso/vetorDeDados.length;
-        refVelocidade.innerText = mVelocidade/vetorDeDados.length;
-        refIdmax.innerText = mIdademMax/vetorDeDados.length;
+        tdP.innerText = pesoM / vet.length;
 
-        refAlto.innerText = vetorDeDados[a].nome;
-        refPeso.innerText = vetorDeDados[p].nome;
-        refVelocidade.innerText = vetorDeDados[v].nome;
-        refl.innerText = vetorDeDados[l].nome;
+        tdI.innerText = IdadeM / vet.length;
+        tdV.innerText = VelM / vet.length;
+        tdA.innerText = alturam / vet.length;
+
+        rAlto.innerText = vet[alto].nome;
+        rLong.innerText = vet[longe].nome;
+
+        rPesado.innerText = vet[pesado].nome;
+        rVeloz.innerText = vet[veloz].nome;
+
+        var numeroAn = 0;
+        var mediaPe = pesoM / vet.length;
+        var refAcima = document.getElementById("acima");
+        for (var i = 0; i < vet.length; i++) {
+            if (vet[i].peso > mediaPe) numeroAn++;
+        }
+        refAcima.innerText = numeroAn;
+
+        formulario.reset();
+        formulario.nome.focus();
     }
 </script>
+
 </html>
