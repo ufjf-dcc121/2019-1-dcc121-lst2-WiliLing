@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Coleção de animas</title>
+    <title>Exercicio 2.2</title>
 
     <style>
         .animal {
@@ -128,15 +128,12 @@
 
     function adicionar(e) {
         e.preventDefault();
-        //Referências do form
         var formulario = document.forms.form;
         var nome = formulario.nome.value;
         var altura = formulario.altura.value;
         var peso = formulario.peso.value;
         var velocidade = formulario.velocidade.value;
         var idade = formulario.idade.value;
-
-        //Referencias da tabela
         var tdP = document.getElementById("pesoM");
         var tb = document.getElementsByTagName("tbody")[0];
         var tdA = document.getElementById("alturam");
