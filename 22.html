@@ -19,6 +19,7 @@
         .animais th,td{
             border:dotted 1px rgb(255,0,0);
         }
+
     </style>
 </head>
 <body>
@@ -85,5 +86,16 @@
                     <li>Mais longe: <span id="longevo"></span></li>   
                     <li>Mais veloz: <span id="veloz"></span></li>
                 </ol>
+                <p>Animas acima do peso: <span id="acima"></span></p>
 </body>
+<script>
+    document.forms.formulario.addEventListener("submit",addAnimal);
+    vetorDeDados = [];
+    var refAltura = 0;
+    var refPeso = 0;
+    var refVelocidade = 0;
+    var refIdadeMax = 0;
+    var tDAn = 0;
+   
+</script>
 </html>
